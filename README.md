@@ -1,12 +1,16 @@
 # nodejs-debian-ssh
 
-### Boilerplate for nodejs on docker with an ability to easly connect by SSH in VSCode Remote SSH 
+### Boilerplate to develope nodejs app on docker with an ability to easly connect by SSH in VSCode Remote SSH 
 I used Official node image node:slim (latest) but its work with any other node tags .. exept Alpine! 
 
 You can ignore RSA key and using root password instead just uncommend or add
 ``` Dockerfile
 RUN echo 'root:toor' | chpasswd
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
+```
+You can add git and use colorful terminal with zsh instead of bash, uncommend or add:
+``` Dockerfile
+RUN apt install git -y && bash -c "$(wget https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh -O -)"
 ```
 feel free to edit Dockerfile
 
@@ -39,6 +43,6 @@ feel free to edit Dockerfile
    ```
 
 ### Docker image file size
- After Installation size: ~313MB , this size could be diffrent on your server because its latest tag and also updated!
+ After Installation size: ~265MB , this size could be diffrent on your server because its latest tag and also updated!
   - npm -v  9.8.0
   - node -v  v20.5.1
