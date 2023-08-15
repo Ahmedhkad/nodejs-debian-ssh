@@ -1,5 +1,5 @@
 FROM node:slim
-LABEL maintainer="ahkad" email="alomairi@mail.ru" version="1.0" location="Russia" type="node-slim-ssh"
+LABEL maintainer="Ahmed Al-Omairi" email="alomairi@mail.ru" version="1.2" location="Iraq" type="node-debian-ssh"
 
 # --- SSH Keys setup
 WORKDIR /root/.ssh/
@@ -8,7 +8,11 @@ COPY ./ssh-keys/for-docker/* ./
 RUN cat  ~/.ssh/* >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys
 
 # --- curl or wget for VSCode Remote
-RUN apt update && apt install curl openssh-server -y
+RUN apt-get update \
+ && DEBIAN_FRONTEND=noninteractive \
+ apt-get install --no-install-recommends --assume-yes \ 
+ wget openssh-server \
+ && rm -rf /var/lib/apt/lists/*
 # RUN  echo 'root:toor' | chpasswd
 # RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
 RUN service ssh start
