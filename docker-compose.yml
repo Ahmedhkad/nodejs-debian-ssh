@@ -14,9 +14,7 @@ services:
     volumes:
       - ./nodejs-app:/app
 
-     
 # service ssh restart
 # docker build -t nodejs-slim-ssh .
 # docker run -p 6622:22 --rm --name nodejs-slim-ssh -it nodejs-slim-ssh /bin/sh
-
 # docker stop nodejs-slim-ssh && docker rm nodejs-slim-ssh && docker rmi $(docker images | grep 'nodejs-slim-ssh')
