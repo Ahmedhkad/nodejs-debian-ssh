@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  nodejs-slim-ssh:
+    container_name: nodejs-slim-ssh
+    build: .
+    image: "nodejs-slim-ssh:0.1"
+    restart: unless-stopped
+    ports:
+      - "2222:22"
+      - "2280:80"
+      - "2243:443"
+      - "2230:3000"
+      - "2250:5000"
+    volumes:
+      - ./nodejs-app:/app
+
+     
+# service ssh restart
+# docker build -t nodejs-slim-ssh .
+# docker run -p 6622:22 --rm --name nodejs-slim-ssh -it nodejs-slim-ssh /bin/sh
+
+# docker stop nodejs-slim-ssh && docker rm nodejs-slim-ssh && docker rmi $(docker images | grep 'nodejs-slim-ssh')
